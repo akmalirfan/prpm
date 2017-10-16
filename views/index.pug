@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+        meta(name='mobile-web-app-capable', content='yes')
+        meta(name='theme-color', content='#870e54')
+        meta(http-equiv='X-UA-Compatible', content='ie=edge')
+        title= title
+        link(rel='stylesheet', href='style.css')
+    body
+        #maindiv
+            form
+                input(name='perkataan', type='text', spellcheck='false', value=query)
+                input(type='submit', value='Cari')
+
+            if (maknaperkataan.length > 0)
+                each str, index in maknaperkataan
+                    div
+                        h2= query
+                            if (maknaperkataan.length > 1)
+                                sup= index + 1
+                        p= str
+            else if (query)
+                h2 Perkataan "#{query}" tidak ditemui

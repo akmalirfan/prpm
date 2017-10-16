@@ -1,0 +1,28 @@
+body {
+    font-family: monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+form {
+    text-align: center;
+}
+div {
+    max-width: 30rem;
+    border-bottom: 1px solid lightgray;
+}
+div:last-child {
+    border-bottom: none;
+}
+#maindiv {
+    border-bottom: none;
+    padding: 5%;
+}
+h2 {
+    color: #444;
+}
+p {
+    color: #555;
+}
