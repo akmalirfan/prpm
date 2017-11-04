@@ -22,6 +22,10 @@ div:last-child {
 }
 h2 {
     color: #444;
+    margin-bottom: 0;
+}
+.sebutan {
+    color: #999;
 }
 p {
     color: #555;
