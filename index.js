@@ -14,12 +14,12 @@ app.get('/', (req, res) => {
             let maknaperkataan = []
 
             if (element != undefined) {
-                let woi = []
+                let temp = []
                 let meanings = {}
                 
                 // Bilangan makna
                 for (word of element.children[0].children[0].children) {
-                    woi.push(word.textContent)
+                    temp.push(word.textContent)
                 }
                 
                 // Makna dan sumber
@@ -31,28 +31,28 @@ app.get('/', (req, res) => {
                     let sumber = padanan[3]
                 
                     if (sumber != 'Kamus Pelajar Edisi Kedua') {
-                        meanings[woi[i]] = {
+                        meanings[temp[i]] = {
                             sebutan,
                             makna
                         }
                     } else {
                         // Overwrite the value without removing the allocated space
                         // 0 is a random value. It can be anything but a valid word
-                        woi[i] = 0
+                        temp[i] = 0
                     }
                 
                     i++
                 }
                 
                 // Sort
-                woi.sort()
+                temp.sort()
                 
-                for (let i = 0; i < woi.length; i++) {
-                    if (meanings[woi[i]] != undefined) {
+                for (perkataan of temp) {
+                    if (meanings[perkataan] != undefined) {
                         maknaperkataan.push({
-                            perkataan: woi[i],
-                            sebutan: meanings[woi[i]].sebutan,
-                            makna: meanings[woi[i]].makna
+                            perkataan,
+                            sebutan: meanings[perkataan].sebutan,
+                            makna: meanings[perkataan].makna
                         })
                     }
                 }
