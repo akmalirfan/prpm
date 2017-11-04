@@ -15,11 +15,16 @@ html
                 input(type='submit', value='Cari')
 
             if (maknaperkataan.length > 0)
-                each str, index in maknaperkataan
+                each kata in maknaperkataan
                     div
-                        h2= query
-                            if (maknaperkataan.length > 1)
-                                sup= index + 1
-                        p= str
+                        if (maknaperkataan.length > 1)
+                            - var perkataan = kata.perkataan.match(/(.*)\s(.+)$/i)
+                            h2= perkataan[1]
+                                sup= perkataan[2]
+                        else
+                            h2= kata.perkataan
+                        
+                        span.sebutan= kata.sebutan
+                        p= kata.makna
             else if (query)
                 h2 Perkataan "#{query}" tidak ditemui
