@@ -6,7 +6,7 @@ html
         meta(name='mobile-web-app-capable', content='yes')
         meta(name='theme-color', content='#870e54')
         meta(http-equiv='X-UA-Compatible', content='ie=edge')
-        title= title
+        title PRPM Lite #{query && `- ${query}`}
         link(rel='stylesheet', href='style.css')
     body
         #maindiv
@@ -14,7 +14,7 @@ html
                 input(name='perkataan', type='text', spellcheck='false', value=query)
                 input(type='submit', value='Cari')
 
-            if (maknaperkataan.length > 0)
+            if (maknaperkataan && maknaperkataan.length > 0)
                 each kata in maknaperkataan
                     div
                         if (maknaperkataan.length > 1)
@@ -27,4 +27,6 @@ html
                         span.sebutan= kata.sebutan
                         p= kata.makna
             else if (query)
-                h2 Perkataan "#{query}" tidak ditemui
+                p Perkataan "#{query}" tidak ditemui
+            else
+                p Cari perkataan dari Kamus Dewan Edisi Keempat
