@@ -1,7 +1,7 @@
 {
     "name": "PRPM Lite",
     "short_name": "PRPM Lite",
-    "start_url": "index.html",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#870e54",
     "theme_color": "#870e54",
