@@ -16,10 +16,10 @@ html
                 input(name='perkataan', type='text', spellcheck='false', value=query)
                 input(type='submit', value='Cari')
 
-            if (maknaperkataan && maknaperkataan.length > 0)
-                each kata in maknaperkataan
+            if (words && words.length > 0)
+                each kata in words
                     div
-                        if (maknaperkataan.length > 1)
+                        if (words.length > 1)
                             - var perkataan = kata.perkataan.match(/(.*)\s(.+)$/i)
                             h2= perkataan[1]
                                 sup= perkataan[2]

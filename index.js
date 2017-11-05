@@ -11,12 +11,12 @@ app.get('/', (req, res) => {
     if (req.query.perkataan) {
         JSDOM.fromURL(`http://prpm.dbp.gov.my/Cari1?keyword=${req.query.perkataan}`).then(dom => {
             let element = dom.window.document.querySelector('.panelDBP')
-            let maknaperkataan = []
+            let words = []
 
             if (element != undefined) {
                 // Bilangan makna
                 for (word of element.children[0].children[0].children) {
-                    maknaperkataan.push({
+                    words.push({
                         perkataan: word.textContent
                     })
                 }
@@ -27,16 +27,16 @@ app.get('/', (req, res) => {
                     let padanan = kata[i].textContent.match(/(\[.*\])?.*Definisi : (.+)\((.+)\)$/i)
                 
                     if (padanan[3] === 'Kamus Pelajar Edisi Kedua') {
-                        maknaperkataan.splice(j, 1)
+                        words.splice(j, 1)
                         j--
                     } else {
-                        maknaperkataan[j].sebutan = padanan[1]
-                        maknaperkataan[j].makna = padanan[2].trim()
+                        words[j].sebutan = padanan[1]
+                        words[j].makna = padanan[2].trim()
                     }
                 }
                 
                 // Sort
-                maknaperkataan.sort((a, b) => {
+                words.sort((a, b) => {
                     if (a.perkataan < b.perkataan) return -1
                     return 1
                 })
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
             res.render('index', {
                 query: req.query.perkataan,
-                maknaperkataan
+                words
             })
         })
     } else {
