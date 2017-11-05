@@ -1,0 +1,31 @@
+{
+    "name": "PRPM Lite",
+    "short_name": "PRPM Lite",
+    "start_url": "index.php",
+    "display": "standalone",
+    "background_color": "#870e54",
+    "theme_color": "#870e54",
+    "description": "Scrape from PRPM",
+    "icons": [
+        {
+            "src": "img/launcher-icon-1x.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "img/launcher-icon-2x.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "img/launcher-icon-4x.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "img/launcher-icon-512px.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
