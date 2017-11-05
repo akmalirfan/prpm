@@ -14,48 +14,32 @@ app.get('/', (req, res) => {
             let maknaperkataan = []
 
             if (element != undefined) {
-                let temp = []
-                let meanings = {}
-                
                 // Bilangan makna
                 for (word of element.children[0].children[0].children) {
-                    temp.push(word.textContent)
+                    maknaperkataan.push({
+                        perkataan: word.textContent
+                    })
                 }
                 
-                // Makna dan sumber
-                let i = 0
-                for (word of element.children[1].children[0].children) {
-                    let padanan = word.textContent.match(/(\[.*\])?.*Definisi : (.+)\((.+)\)$/i)
-                    let sebutan = padanan[1]
-                    let makna = padanan[2].trim()
-                    let sumber = padanan[3]
+                // Makna, sebutan dan sumber
+                let kata = element.children[1].children[0].children
+                for (let i = 0, j = 0; i < kata.length; i++, j++) {
+                    let padanan = kata[i].textContent.match(/(\[.*\])?.*Definisi : (.+)\((.+)\)$/i)
                 
-                    if (sumber != 'Kamus Pelajar Edisi Kedua') {
-                        meanings[temp[i]] = {
-                            sebutan,
-                            makna
-                        }
+                    if (padanan[3] === 'Kamus Pelajar Edisi Kedua') {
+                        maknaperkataan.splice(j, 1)
+                        j--
                     } else {
-                        // Overwrite the value without removing the allocated space
-                        // 0 is a random value. It can be anything but a valid word
-                        temp[i] = 0
+                        maknaperkataan[j].sebutan = padanan[1]
+                        maknaperkataan[j].makna = padanan[2].trim()
                     }
-                
-                    i++
                 }
                 
                 // Sort
-                temp.sort()
-                
-                for (perkataan of temp) {
-                    if (meanings[perkataan] != undefined) {
-                        maknaperkataan.push({
-                            perkataan,
-                            sebutan: meanings[perkataan].sebutan,
-                            makna: meanings[perkataan].makna
-                        })
-                    }
-                }
+                maknaperkataan.sort((a, b) => {
+                    if (a.perkataan < b.perkataan) return -1
+                    return 1
+                })
             }
 
             res.render('index', {
