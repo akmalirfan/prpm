@@ -1,21 +1,21 @@
 {
-  "name": "prpm",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.2",
-    "jsdom": "^11.3.0",
-    "pug": "^2.0.0-rc.4"
-  },
-  "now": {
-    "name": "prpm-lite",
-    "alias": "prpmlite",
-    "type": "npm"
-  }
+    "name": "prpm",
+    "version": "0.1.0",
+    "description": "Scrape from PRPM",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index"
+    },
+    "author": "Akmal Irfan",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.2",
+        "jsdom": "^11.3.0",
+        "pug": "^2.0.0-rc.4"
+    },
+    "now": {
+        "name": "prpm-lite",
+        "alias": "prpmlite",
+        "type": "npm"
+    }
 }
