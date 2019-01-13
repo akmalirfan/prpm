@@ -19,10 +19,11 @@ html
             if (words && words.length > 0)
                 each kata in words
                     div
-                        - var perkataan = kata.perkataan.match(/(.*)\s(.+)$/i)
-                        if (words.length > 1 && perkataan)
-                            h2= perkataan[1]
-                                sup= perkataan[2]
+                        - var perkataan = kata.perkataan.split(' ')
+                        - var diff = perkataan.length - query.split(' ').length
+                        if (words.length > 1 && diff)
+                            h2= perkataan.slice(0, perkataan.length - 1).join(' ')
+                                sup= perkataan[perkataan.length - 1]
                         else
                             h2= kata.perkataan
                         
