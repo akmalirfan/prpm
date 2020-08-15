@@ -1,20 +1,40 @@
-<html>
-	<body>
-		<p id="makna"></p>
-		<script>
-			let url = new URL(window.location.href)
-			let perkataan = url.searchParams.get('perkataan')
-			fetch(`/api/?perkataan=${perkataan}`)
-			    .then(res => res.json())
-			    .then(data => {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="maindiv">
+        <form>
+            <input name="perkataan" type="text" value="agas">
+            <input type="submit" value="Cari">
+        </form>
+    </div>
+	<script>
+		let url = new URL(window.location.href)
+		let perkataan = url.searchParams.get('perkataan')
+        let maindiv = document.queryElement('#maindiv')
+
+		fetch(`/api/?perkataan=${perkataan}`)
+            .then(res => res.json())
+            .then(data => {
 				if (data.words && data.words.length > 0) {
 				    for (const word of data.words) {
-					let p = document.createElement('p')
-					p.innerText = word.makna
-					document.body.appendChild(p)
+					    let div = document.createElement('div')
+                        let h2 = document.createElement('h2')
+                        let p = document.createElement('p')
+                        h2.innerText = word.perkataan
+                        p.innerText = word.makna
+					    div.appendChild(h2)
+                        div.appendChild(p)
+					    maindiv.appendChild(div)
 				    }
 				}
-			    })
-		</script>
-	</body>
+            })
+	</script>
+</body>
 </html>
