@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<p id="makna"></p>
+		<script>
+			let url = new URL(window.location.href)
+			let perkataan = url.searchParams.get('perkataan')
+			fetch(`/api/?perkataan=${perkataan}`)
+			    .then(res => res.json())
+			    .then(data => {
+				if (data.words && data.words.length > 0) {
+				    for (const word of data.words) {
+					let p = document.createElement('p')
+					p.innerText = word.makna
+					document.body.appendChild(p)
+				    }
+				}
+			    })
+		</script>
+	</body>
+</html>
