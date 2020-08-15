@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Kamus Dewan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="maindiv">
         <form>
-            <input name="perkataan" type="text" value="agas">
+            <input id="cari" name="perkataan" type="text">
             <input type="submit" value="Cari">
         </form>
     </div>
 	<script>
 		let url = new URL(window.location.href)
 		let perkataan = url.searchParams.get('perkataan')
-        let maindiv = document.queryElement('#maindiv')
+        let maindiv = document.querySelector('#maindiv')
+
+        document.querySelector('#cari').value = perkataan
 
 		fetch(`/api/?perkataan=${perkataan}`)
             .then(res => res.json())
