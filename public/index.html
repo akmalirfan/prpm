@@ -28,9 +28,9 @@
             fetch(`/api/?perkataan=${perkataan}`)
                 .then(res => res.json())
                 .then(data => {
-                    placeholder.style.display = "none"
-
                     if (data.words && data.words.length > 0) {
+                        placeholder.style.display = "none"
+
                         for (const word of data.words) {
                             let div = document.createElement('div')
                             let h2 = document.createElement('h2')
@@ -41,6 +41,8 @@
                             div.appendChild(p)
                             maindiv.appendChild(div)
                         }
+                    } else {
+                        placeholder.innerText = `Perkataan ${perkataan} tidak ditemui`
                     }
                 })
         }
