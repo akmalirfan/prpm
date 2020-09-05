@@ -13,30 +13,37 @@
             <input id="cari" name="perkataan" type="text">
             <input type="submit" value="Cari">
         </form>
+        <p id="placeholder">Cari perkataan dari Kamus Dewan Edisi Keempat</p>
     </div>
-	<script>
-		let url = new URL(window.location.href)
-		let perkataan = url.searchParams.get('perkataan')
+    <script>
+        let url = new URL(window.location.href)
+        let perkataan = url.searchParams.get('perkataan')
         let maindiv = document.querySelector('#maindiv')
+        let placeholder = document.querySelector('#placeholder')
 
-        document.querySelector('#cari').value = perkataan
+        if (perkataan) {
+            document.querySelector('#cari').value = perkataan
+            placeholder.innerText = 'Sila tunggu...'
 
-		fetch(`/api/?perkataan=${perkataan}`)
-            .then(res => res.json())
-            .then(data => {
-				if (data.words && data.words.length > 0) {
-				    for (const word of data.words) {
-					    let div = document.createElement('div')
-                        let h2 = document.createElement('h2')
-                        let p = document.createElement('p')
-                        h2.innerText = word.perkataan
-                        p.innerText = word.makna
-					    div.appendChild(h2)
-                        div.appendChild(p)
-					    maindiv.appendChild(div)
-				    }
-				}
-            })
-	</script>
+            fetch(`/api/?perkataan=${perkataan}`)
+                .then(res => res.json())
+                .then(data => {
+                    placeholder.style.display = "none"
+
+                    if (data.words && data.words.length > 0) {
+                        for (const word of data.words) {
+                            let div = document.createElement('div')
+                            let h2 = document.createElement('h2')
+                            let p = document.createElement('p')
+                            h2.innerText = word.perkataan
+                            p.innerText = word.makna
+                            div.appendChild(h2)
+                            div.appendChild(p)
+                            maindiv.appendChild(div)
+                        }
+                    }
+                })
+        }
+    </script>
 </body>
 </html>
