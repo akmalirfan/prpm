@@ -25,7 +25,7 @@
             document.querySelector('#cari').value = perkataan
             placeholder.innerText = 'Sila tunggu...'
 
-            fetch(`/api/?perkataan=${perkataan}`)
+            fetch(`/api?perkataan=${perkataan}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.words && data.words.length > 0) {
