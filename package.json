@@ -8,6 +8,6 @@
     "author": "Akmal Irfan",
     "license": "ISC",
     "dependencies": {
-        "jsdom": "^16.5.0"
+        "jsdom": "^16.7.0"
     }
 }
